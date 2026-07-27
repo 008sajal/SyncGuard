@@ -77,7 +77,8 @@ class ImageFrameDataset(Dataset):
 
     @staticmethod
     def _safe_name(relative_path: str) -> str:
-        path = Path(relative_path)
+        normalised_path = str(relative_path).replace("\\", "/")
+        path = Path(normalised_path)
         return "__".join(path.with_suffix("").parts)
 
     def __len__(self) -> int:
